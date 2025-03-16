@@ -1,0 +1,470 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.2">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+    span.s2 {font: 12.0px 'PingFang SC'; font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="zh-CN"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;title&gt;SynthStitch - AI</span><span class="s2">虚拟服装换装</span><span class="s1">APP&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>tailwind.config = {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>theme: {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>extend: {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>colors: {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>primary: '#3B82F6',</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>secondary: '#F3F4F6',</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>dark: '#1F2937',</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>light: '#F9FAFB',</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>accent: '#EC4899'</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// </span><span class="s2">页面切换功能</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function showScreen(screenId) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.screen').forEach(screen =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>screen.classList.add('hidden');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(screenId).classList.remove('hidden');</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// </span><span class="s2">更新底部导航状态</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.nav-item').forEach(item =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>item.classList.remove('text-primary');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>item.classList.add('text-gray-400');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (document.querySelector(`.nav-item[data-screen="${screenId}"]`)) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.querySelector(`.nav-item[data-screen="${screenId}"]`).classList.remove('text-gray-400');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.querySelector(`.nav-item[data-screen="${screenId}"]`).classList.add('text-primary');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// AI</span><span class="s2">生成功能</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function generateDesign(type) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const loadingScreen = document.getElementById('loadingScreen');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const resultScreen = document.getElementById('resultScreen');</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>loadingScreen.classList.remove('hidden');</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// </span><span class="s2">模拟</span><span class="s1">AI</span><span class="s2">生成过程</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>setTimeout(() =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>loadingScreen.classList.add('hidden');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>resultScreen.classList.remove('hidden');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}, 2000);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// </span><span class="s2">返回上一页</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function goBack(screenId) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('resultScreen').classList.add('hidden');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('loadingScreen').classList.add('hidden');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(screenId).classList.remove('hidden');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// </span><span class="s2">切换工作区视图</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function toggleWorkspaceView(viewType) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.workspace-view').forEach(view =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>view.classList.add('hidden');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(viewType + 'View').classList.remove('hidden');</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.view-btn').forEach(btn =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>btn.classList.remove('bg-primary', 'text-white');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>btn.classList.add('bg-gray-100', 'text-gray-500');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(viewType + 'Btn').classList.remove('bg-gray-100', 'text-gray-500');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(viewType + 'Btn').classList.add('bg-primary', 'text-white');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;style&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>body {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* iPhone</span><span class="s2">状态栏样式</span><span class="s1"> */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.status-bar {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>height: 44px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding-top: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* </span><span class="s2">底部安全区域</span><span class="s1"> */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.home-indicator {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>height: 34px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* </span><span class="s2">平滑过渡</span><span class="s1"> */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.transition-all {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* </span><span class="s2">自定义滚动条</span><span class="s1"> */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.custom-scroll::-webkit-scrollbar {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* </span><span class="s2">加载动画</span><span class="s1"> */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>@keyframes pulse {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>0%, 100% {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>opacity: 1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>50% {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>opacity: 0.5;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.animate-pulse {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body class="bg-light text-dark"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="iphone-frame relative mx-auto" style="width: 375px; height: 812px; overflow: hidden;"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;!-- </span><span class="s2">状态栏</span><span class="s1"> --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="status-bar flex justify-between px-5 bg-light"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="time font-semibold"&gt;9:41&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="icons flex space-x-2"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;i class="fas fa-signal"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;i class="fas fa-wifi"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;i class="fas fa-battery-full"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;!-- </span><span class="s2">首页</span><span class="s1">/</span><span class="s2">发现屏幕</span><span class="s1"> --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div id="homeScreen" class="screen h-full pb-20 overflow-y-auto custom-scroll"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;!-- </span><span class="s2">头部搜索栏</span><span class="s1"> --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="px-4 py-3 sticky top-0 bg-light z-10"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="flex items-center justify-between mb-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;h1 class="text-2xl font-bold"&gt;SynthStitch&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="flex space-x-3"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;button class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;i class="fas fa-bell text-gray-500"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;button class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;i class="fas fa-search text-gray-500"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="flex space-x-2 overflow-x-auto pb-2 custom-scroll"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;button class="px-4 py-2 bg-primary text-white rounded-full whitespace-nowrap"&gt;</span><span class="s2">为你推荐</span><span class="s1">&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;button class="px-4 py-2 bg-secondary text-gray-600 rounded-full whitespace-nowrap"&gt;</span><span class="s2">流行趋势</span><span class="s1">&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;button class="px-4 py-2 bg-secondary text-gray-600 rounded-full whitespace-nowrap"&gt;</span><span class="s2">休闲风格</span><span class="s1">&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;button class="px-4 py-2 bg-secondary text-gray-600 rounded-full whitespace-nowrap"&gt;</span><span class="s2">商务正装</span><span class="s1">&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;button class="px-4 py-2 bg-secondary text-gray-600 rounded-full whitespace-nowrap"&gt;</span><span class="s2">运动装</span><span class="s1">&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;!-- </span><span class="s2">主要内容</span><span class="s1"> --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="px-4 pt-2"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;!-- AI</span><span class="s2">功能卡片</span><span class="s1"> --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="bg-gradient-to-r from-primary to-blue-400 rounded-2xl p-4 text-white mb-6"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="flex justify-between items-center"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="w-2/3"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;h3 class="text-xl font-bold mb-2"&gt;AI</span><span class="s2">设计工作室</span><span class="s1">&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm opacity-90 mb-4"&gt;</span><span class="s2">创建个性化服装设计，虚拟试穿</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;button onclick="showScreen('aiStudioScreen')" class="bg-white text-primary px-4 py-2 rounded-lg font-medium"&gt;</span><span class="s2">开始创作</span><span class="s1">&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="w-1/3"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=120&amp;h=180&amp;fit=crop&amp;crop=faces" class="rounded-lg w-full h-32 object-cover" alt="AI</span><span class="s2">设计</span><span class="s1">"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;!-- </span><span class="s2">今日推荐</span><span class="s1"> --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-lg font-bold mb-3"&gt;</span><span class="s2">今日推荐</span><span class="s1">&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="grid grid-cols-2 gap-3 mb-6"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="rounded-xl overflow-hidden bg-white shadow-sm"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=180&amp;h=240&amp;fit=crop" class="w-full h-48 object-cover" alt="</span><span class="s2">推荐</span><span class="s1">1"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="p-3"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm font-medium"&gt;</span><span class="s2">秋季外套系列</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p class="text-xs text-gray-500"&gt;</span><span class="s2">基于你的风格偏好</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="rounded-xl overflow-hidden bg-white shadow-sm"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;img src="https://images.unsplash.com/photo-1566206091558-7f218b696731?w=180&amp;h=240&amp;fit=crop" class="w-full h-48 object-cover" alt="</span><span class="s2">推荐</span><span class="s1">2"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="p-3"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm font-medium"&gt;</span><span class="s2">复古牛仔风</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p class="text-xs text-gray-500"&gt;</span><span class="s2">当季流行趋势</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;!-- </span><span class="s2">设计灵感</span><span class="s1"> --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-lg font-bold mb-3"&gt;</span><span class="s2">设计灵感</span><span class="s1">&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="flex space-x-4 overflow-x-auto pb-4 custom-scroll"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="w-36 flex-shrink-0"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;img src="https://images.unsplash.com/photo-1603189343302-e603f7add05a?w=144&amp;h=216&amp;fit=crop" class="rounded-lg w-full h-48 object-cover mb-2" alt="</span><span class="s2">灵感</span><span class="s1">1"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;p class="text-sm font-medium"&gt;</span><span class="s2">极简主义</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;p class="text-xs text-gray-500"&gt;12</span><span class="s2">个设计</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="w-36 flex-shrink-0"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=144&amp;h=216&amp;fit=crop" class="rounded-lg w-full h-48 object-cover mb-2" alt="</span><span class="s2">灵感</span><span class="s1">2"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;p class="text-sm font-medium"&gt;</span><span class="s2">运动科技风</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;p class="text-xs text-gray-500"&gt;8</span><span class="s2">个设计</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="w-36 flex-shrink-0"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=144&amp;h=216&amp;fit=crop" class="rounded-lg w-full h-48 object-cover mb-2" alt="</span><span class="s2">灵感</span><span class="s1">3"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;p class="text-sm font-medium"&gt;</span><span class="s2">复古时尚</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;p class="text-xs text-gray-500"&gt;15</span><span class="s2">个设计</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="w-36 flex-shrink-0"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=144&amp;h=216&amp;fit=crop" class="rounded-lg w-full h-48 object-cover mb-2" alt="</span><span class="s2">灵感</span><span class="s1">4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;p class="text-sm font-medium"&gt;</span><span class="s2">街头潮流</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;p class="text-xs text-gray-500"&gt;9</span><span class="s2">个设计</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;!-- </span><span class="s2">社区精选</span><span class="s1"> --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-lg font-bold mb-3 mt-6"&gt;</span><span class="s2">社区精选</span><span class="s1">&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="space-y-4 mb-6"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="bg-white rounded-xl overflow-hidden shadow-sm p-3"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center space-x-2 mb-3"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=32&amp;h=32&amp;fit=crop&amp;crop=faces" class="w-8 h-8 rounded-full" alt="</span><span class="s2">用户</span><span class="s1">"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;p class="text-sm font-medium"&gt;@</span><span class="s2">时尚达人</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;p class="text-xs text-gray-500"&gt;2</span><span class="s2">小时前</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;p class="text-sm mb-3"&gt;</span><span class="s2">分享我用</span><span class="s1">AI</span><span class="s2">设计的法式复古风穿搭，非常满意这个效果！</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;img src="https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?w=375&amp;h=250&amp;fit=crop" class="w-full h-48 object-cover rounded-lg mb-3" alt="</span><span class="s2">社区</span><span class="s1">1"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="flex justify-between text-gray-500 text-sm"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div class="flex space-x-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div class="flex items-center space-x-1"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;i class="far fa-heart"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;span&gt;128&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div class="flex items-center space-x-1"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;i class="far fa-comment"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;span&gt;24&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div class="flex items-center space-x-1"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;i class="far fa-bookmark"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;span&gt;</span><span class="s2">收藏</span><span class="s1">&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="bg-white rounded-xl overflow-hidden shadow-sm p-3"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center space-x-2 mb-3"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&amp;h=32&amp;fit=crop&amp;crop=faces" class="w-8 h-8 rounded-full" alt="</span><span class="s2">用户</span><span class="s1">"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;p class="text-sm font-medium"&gt;@</span><span class="s2">潮流先锋</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;p class="text-xs text-gray-500"&gt;</span><span class="s2">昨天</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;p class="text-sm mb-3"&gt;</span><span class="s2">用文字描述生成的街头风格设计，</span><span class="s1">AI</span><span class="s2">真的太强大了！</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;img src="https://images.unsplash.com/photo-1550614000-4895a10e1bfd?w=375&amp;h=250&amp;fit=crop" class="w-full h-48 object-cover rounded-lg mb-3" alt="</span><span class="s2">社区</span><span class="s1">2"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="flex justify-between text-gray-500 text-sm"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div class="flex space-x-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div class="flex items-center space-x-1"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;i class="far fa-heart"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;span&gt;96&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div class="flex items-center space-x-1"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;i class="far fa-comment"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;span&gt;18&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div class="flex items-center space-x-1"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;i class="far fa-bookmark"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;span&gt;</span><span class="s2">收藏</span><span class="s1">&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;!-- AI</span><span class="s2">工作室屏幕</span><span class="s1"> --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div id="aiStudioScreen" class="screen h-full pb-20 overflow-y-auto custom-scroll hidden"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;!-- </span><span class="s2">头部</span><span class="s1"> --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="px-4 py-3 sticky top-0 bg-light z-10"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="flex items-center justify-between mb-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;button onclick="showScreen('homeScreen')" class="mr-3"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;i class="fas fa-arrow-left text-lg"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;h1 class="text-xl font-bold"&gt;AI</span><span class="s2">设计工作室</span><span class="s1">&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;button class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;i class="fas fa-sliders-h text-gray-500"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;!-- AI</span><span class="s2">功能选择</span><span class="s1"> --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="px-4 pt-2"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;p class="text-gray-500 mb-6"&gt;</span><span class="s2">选择创作方式，开始你的设计之旅</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;!-- </span><span class="s2">虚拟试衣</span><span class="s1"> --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white rounded-xl overflow-hidden shadow-sm mb-4" onclick="showScreen('virtualTryOnScreen')"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="flex p-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="w-16 h-16 rounded-lg bg-blue-100 flex items-center justify-center mr-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;i class="fas fa-tshirt text-primary text-2xl"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="flex-1"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;h3 class="text-lg font-medium mb-1"&gt;</span><span class="s2">虚拟试衣</span><span class="s1">&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm text-gray-500"&gt;</span><span class="s2">上传照片，</span><span class="s1">AI</span><span class="s2">帮你试穿各种服装</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="self-center"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;i class="fas fa-chevron-right text-gray-400"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;!-- </span><span class="s2">文字生成设计</span><span class="s1"> --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white rounded-xl overflow-hidden shadow-sm mb-4" onclick="showScreen('textToDesignScreen')"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="flex p-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="w-16 h-16 rounded-lg bg-purple-100 flex items-center justify-center mr-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;i class="fas fa-keyboard text-purple-500 text-2xl"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="flex-1"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;h3 class="text-lg font-medium mb-1"&gt;</span><span class="s2">文字生成设计</span><span class="s1">&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm text-gray-500"&gt;</span><span class="s2">描述你的想法，</span><span class="s1">AI</span><span class="s2">创建服装设计</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="self-center"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;i class="fas fa-chevron-right text-gray-400"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;!-- </span><span class="s2">图片生成设计</span><span class="s1"> --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white rounded-xl overflow-hidden shadow-sm mb-4" onclick="showScreen('imageToDesignScreen')"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="flex p-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="w-16 h-16 rounded-lg bg-green-100 flex items-center justify-center mr-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;i class="fas fa-image text-green-500 text-2xl"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="flex-1"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;h3 class="text-lg font-medium mb-1"&gt;</span><span class="s2">图片生成设计</span><span class="s1">&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm text-gray-500"&gt;</span><span class="s2">上传参考图，</span><span class="s1">AI</span><span class="s2">创建相似风格</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="self-center"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;i class="fas fa-chevron-right text-gray-400"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;!-- </span><span class="s2">风格搭配顾问</span><span class="s1"> --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white rounded-xl overflow-hidden shadow-sm mb-6" onclick="showScreen('styleAdvisorScreen')"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="flex p-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="w-16 h-16 rounded-lg bg-amber-100 flex items-center justify-center mr-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;i class="fas fa-magic text-amber-500 text-2xl"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="flex-1"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;h3 class="text-lg font-medium mb-1"&gt;</span><span class="s2">风格搭配顾问</span><span class="s1">&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm text-gray-500"&gt;</span><span class="s2">获取专业的搭配建议和灵感</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="self-center"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;i class="fas fa-chevron-right text-gray-400"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;!-- </span><span class="s2">最近创作</span><span class="s1"> --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-lg font-bold mb-3"&gt;</span><span class="s2">最近创作</span><span class="s1">&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="grid grid-cols-2 gap-3 mb-6"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="rounded-xl overflow-hidden bg-white shadow-sm"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=180&amp;h=240&amp;fit=crop&amp;crop=faces" class="w-full h-48 object-cover" alt="</span><span class="s2">创作</span><span class="s1">1"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="p-3"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm font-medium"&gt;</span><span class="s2">休闲套装设计</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p class="text-xs text-gray-500"&gt;2</span><span class="s2">天前</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="rounded-xl overflow-hidden bg-white shadow-sm"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=180&amp;h=240&amp;fit=crop" class="w-full h-48 object-cover" alt="</span><span class="s2">创作</span><span class="s1">2"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="p-3"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm font-medium"&gt;</span><span class="s2">亚麻衬衫设计</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p class="text-xs text-gray-500"&gt;</span><span class="s2">上周</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;!-- </span><span class="s2">虚拟试衣屏幕</span><span class="s1"> --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div id="virtualTryOnScreen" class="screen h-full pb-20 overflow-y-auto custom-scroll hidden"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;!-- </span><span class="s2">头部</span><span class="s1"> --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="px-4 py-3 sticky top-0 bg-light z-10"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="flex items-center justify-between mb-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;button onclick="showScreen('aiStudioScreen')" class="mr-3"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;i class="fas fa-arrow-left text-lg"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;h1 class="text-xl font-bold"&gt;</span><span class="s2">虚拟试衣</span><span class="s1">&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;button class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;i class="fas fa-question text-gray-500"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;!-- </span><span class="s2">上传照片区域</span><span class="s1"> --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="px-4 pt-2"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white rounded-xl p-4 shadow-sm mb-6"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-lg font-medium mb-3"&gt;</span><span class="s2">上传你的照片</span><span class="s1">&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="border-2 border-dashed border-gray-300 rounded-lg p-6 flex flex-col items-center justify-center"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mb-3"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;i class="fas fa-camera text-primary text-2xl"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;p class="text-sm text-gray-500 text-center mb-3"&gt;</span><span class="s2">上传清晰的全身照片</span><span class="s1">&lt;br&gt;</span><span class="s2">获得最佳试衣效果</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;button class="bg-primary text-white px-4 py-2 rounded-lg font-medium"&gt;</span><span class="s2">选择照片</span><span class="s1">&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;!-- </span><span class="s2">选择服装类型</span><span class="s1"> --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;h3 class="text-lg font-medium mb-3"&gt;</span><span class="s2">选择服装类型</span><span class="s1">&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="flex space-x-2 overflow-x-auto pb-4 custom-scroll mb-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;button class="px-4 py-2 bg-primary text-white rounded-full whitespace-nowrap"&gt;</span><span class="s2">全部</span><span class="s1">&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;button class="px-4 py-2 bg-secondary text-gray-600 rounded-full whitespace-nowrap"&gt;</span><span class="s2">上装</span><span class="s1">&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;button class="px-4 py-2 bg-secondary text-gray-600 rounded-full whitespace-nowrap"&gt;</span><span class="s2">下装</span><span class="s1">&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;button class="px-4 py-2 bg-secondary text-gray-600 rounded-full whitespace-nowrap"&gt;</span><span class="s2">连衣裙</span><span class="s1">&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;button class="px-4 py-2 bg-secondary text-gray-600 rounded-full whitespace-nowrap"&gt;</span><span class="s2">外套</span><span class="s1">&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;button class="px-4 py-2 bg-secondary text-gray-600 rounded-full whitespace-nowrap"&gt;</span><span class="s2">鞋子</span><span class="s1">&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;!-- </span><span class="s2">推荐服装</span><span class="s1"> --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;h3 class="text-lg font-medium mb-3"&gt;</span><span class="s2">推荐服装</span><span class="s1">&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="grid grid-cols-2 gap-3 mb-6"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="bg-white rounded-xl overflow-hidden shadow-sm" onclick="generateDesign('tryOn')"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=180&amp;h=220&amp;fit=crop" class="w-full h-44 object-cover" alt="</span><span class="s2">服装</span><span class="s1">1"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="p-3"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm font-medium"&gt;</span><span class="s2">休闲亚麻衬衫</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div class="flex justify-between items-center mt-1"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;p class="text-xs text-gray-500"&gt;ZARA&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;button class="bg-primary text-white text-xs px-2 py-1 rounded"&gt;</span><span class="s2">试穿</span><span class="s1">&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="bg-white rounded-xl overflow-hidden shadow-sm" onclick="generateDesign('tryOn')"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=180&amp;h=220&amp;fit=crop" class="w-full h-44 object-cover" alt="</span><span class="s2">服装</span><span class="s1">2"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="p-3"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm font-medium"&gt;</span><span class="s2">格纹西装外套</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div class="flex justify-between items-center mt-1"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;p class="text-xs text-gray-500"&gt;H&amp;M&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;button class="bg-primary text-white text-xs px-2 py-1 rounded"&gt;</span><span class="s2">试穿</span><span class="s1">&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="bg-white rounded-xl overflow-hidden shadow-sm" onclick="generateDesign('tryOn')"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;img src="https://images.unsplash.com/photo-1583744946564-b52d01a7b321?w=180&amp;h=220&amp;fit</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>"cleanUrls": true</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+</body>
+</html>
