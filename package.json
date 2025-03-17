@@ -1,0 +1,11 @@
+{
+  "name": "ai-fashion-app-prototype",
+  "version": "1.0.0",
+  "description": "AI服装换装APP原型",
+  "scripts": {
+    "start": "serve"
+  },
+  "dependencies": {
+    "serve": "^14.0.0"
+  }
+} 

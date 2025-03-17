@@ -1,7 +1,10 @@
 {
   "version": 2,
+  "builds": [
+    { "src": "*.html", "use": "@vercel/static" }
+  ],
   "routes": [
     { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/ss_app_prototype.html" }
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 } 
