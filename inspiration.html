@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        .inspiration-card {
+            border-radius: 16px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="p-4 pb-20">
+        <!-- 顶部导航 -->
+        <div class="flex items-center mb-6">
+            <button class="mr-2">
+                <i class="fas fa-arrow-left text-gray-700"></i>
+            </button>
+            <h1 class="text-xl font-bold flex-1 text-center">灵感创作</h1>
+            <button>
+                <i class="fas fa-history text-gray-700"></i>
+            </button>
+        </div>
+        
+        <!-- 文字生成区 -->
+        <div class="bg-white rounded-xl shadow-sm p-4 mb-6">
+            <h2 class="text-lg font-bold mb-3">文字生成设计</h2>
+            <p class="text-sm text-gray-600 mb-3">描述你想要的服装风格、场合或元素，AI将为你生成设计</p>
+            
+            <div class="mb-4">
+                <textarea class="w-full border border-gray-300 rounded-xl p-3 h-24 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="例如：简约风格的白色连衣裙，适合夏季海边度假，带有一些蓝色条纹元素"></textarea>
+            </div>
+            
+            <div class="flex space-x-2 mb-3">
+                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">简约风</span>
+                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">复古</span>
+                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">商务风</span>
+                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">休闲</span>
+                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">+</span>
+            </div>
+            
+            <button class="w-full bg-purple-700 text-white py-3 rounded-full font-bold">
+                <i class="fas fa-magic mr-2"></i>生成设计
+            </button>
+        </div>
+        
+        <!-- 生成结果展示 -->
+        <div class="mb-6">
+            <div class="flex justify-between items-center mb-3">
+                <h2 class="text-lg font-bold">生成结果</h2>
+                <button class="text-sm text-purple-700">保存到衣橱</button>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <div class="inspiration-card bg-white shadow-sm overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="w-full h-48 object-cover" />
+                    <div class="p-3">
+                        <div class="flex justify-between items-center">
+                            <p class="text-xs font-medium">设计方案 1</p>
+                            <button class="text-gray-500">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="inspiration-card bg-white shadow-sm overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1550614000-4895a10e1bfd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="w-full h-48 object-cover" />
+                    <div class="p-3">
+                        <div class="flex justify-between items-center">
+                            <p class="text-xs font-medium">设计方案 2</p>
+                            <button class="text-gray-500">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 热门灵感 -->
+        <div>
+            <h2 class="text-lg font-bold mb-3">热门灵感</h2>
+            
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden mb-3">
+                <div class="p-4">
+                    <div class="flex items-center mb-3">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" class="w-8 h-8 rounded-full mr-2" />
+                        <div>
+                            <p class="text-sm font-medium">艾米</p>
+                            <p class="text-xs text-gray-500">时尚博主</p>
+                        </div>
+                    </div>
+                    <p class="text-sm mb-3">"我想要一套适合秋季办公室的套装，带有一些复古元素，颜色是驼色系"</p>
+                    <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="w-full h-48 object-cover rounded-lg" />
+                    <div class="flex justify-between mt-3">
+                        <div class="flex space-x-3">
+                            <button class="text-gray-500 flex items-center">
+                                <i class="far fa-heart mr-1"></i>
+                                <span class="text-xs">128</span>
+                            </button>
+                            <button class="text-gray-500 flex items-center">
+                                <i class="far fa-comment mr-1"></i>
+                                <span class="text-xs">24</span>
+                            </button>
+                        </div>
+                        <button class="text-purple-700 text-sm">试穿</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around py-3">
+        <div class="flex flex-col items-center">
+            <i class="fas fa-home text-gray-500"></i>
+            <span class="text-xs mt-1 text-gray-500">首页</span>
+        </div>
+        <div class="flex flex-col items-center">
+            <i class="fas fa-tshirt text-gray-500"></i>
+            <span class="text-xs mt-1 text-gray-500">换装</span>
+        </div>
+        <div class="flex flex-col items-center">
+            <i class="fas fa-lightbulb text-purple-700"></i>
+            <span class="text-xs mt-1 text-purple-700">灵感</span>
+        </div>
+        <div class="flex flex-col items-center">
+            <i class="fas fa-users text-gray-500"></i>
+            <span class="text-xs mt-1 text-gray-500">社区</span>
+        </div>
+        <div class="flex flex-col items-center">
+            <i class="fas fa-user text-gray-500"></i>
+            <span class="text-xs mt-1 text-gray-500">我的</span>
+        </div>
+    </div>
+</body>
+</html>
