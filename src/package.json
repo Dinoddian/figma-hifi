@@ -1,24 +1,26 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.2">
-  <style type="text/css">
-    body {background-color: #f2f5f7}
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #538dff; -webkit-text-stroke: #538dff}
-    span.s1 {font-kerning: none}
-  </style>
-</head>
-<body>
-<p class="p1"><span class="s1">{</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>"name": "my-html-project",</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>"version": "1.0.0",</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>"scripts": {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>"start": "serve ."</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p1"><span class="s1">}</span></p>
-</body>
-</html>
+{\rtf1\ansi\ansicpg936\cocoartf2820
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 .AppleSystemUIFontMonospaced-Regular;}
+{\colortbl;\red255\green255\blue255;\red29\green29\blue29;\red249\green249\blue249;\red7\green68\blue184;
+\red25\green84\blue184;}
+{\*\expandedcolortbl;;\cssrgb\c14902\c14902\c14902;\cssrgb\c98039\c98039\c98039;\cssrgb\c0\c36078\c77255;
+\cssrgb\c11373\c41961\c77255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs27\fsmilli13600 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \{\
+  \cf4 \strokec4 "name"\cf2 \strokec2 : \cf5 \strokec5 "my-app"\cf2 \strokec2 ,\
+  \cf4 \strokec4 "version"\cf2 \strokec2 : \cf5 \strokec5 "1.0.0"\cf2 \strokec2 ,\
+  \cf4 \strokec4 "description"\cf2 \strokec2 : \cf5 \strokec5 ""\cf2 \strokec2 ,\
+  \cf4 \strokec4 "main"\cf2 \strokec2 : \cf5 \strokec5 "index.js"\cf2 \strokec2 ,\
+  \cf4 \strokec4 "scripts"\cf2 \strokec2 : \{\
+    \cf4 \strokec4 "start"\cf2 \strokec2 : \cf5 \strokec5 "node index.js"\cf2 \strokec2 \
+  \},\
+  \cf4 \strokec4 "keywords"\cf2 \strokec2 : [],\
+  \cf4 \strokec4 "author"\cf2 \strokec2 : \cf5 \strokec5 ""\cf2 \strokec2 ,\
+  \cf4 \strokec4 "license"\cf2 \strokec2 : \cf5 \strokec5 "ISC"\cf2 \strokec2 ,\
+  \cf4 \strokec4 "dependencies"\cf2 \strokec2 : \{\
+    \cf4 \strokec4 "express"\cf2 \strokec2 : \cf5 \strokec5 "^4.17.1"\cf2 \strokec2 \
+  \}\
+\}}

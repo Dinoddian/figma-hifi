@@ -8,10 +8,18 @@
 
 \f0\fs24 \cf2 \expnd0\expndtw0\kerning0
 \{\
-  "rewrites": [\
+  "version": 2,\
+  "builds": [\
     \{\
-      "source": "/(.*)",\
-      "destination": "/$1"\
+      "src": "package.json",\
+      "use": "@vercel/node"\
+    \}\
+  ],\
+  "routes": [\
+    \{\
+      "src": "/(.*)",\
+      "dest": "/index.js"\
     \}\
   ]\
-\}}
+\}\
+}
