@@ -1,111 +1,195 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <link href='https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css' rel='stylesheet'>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css'>
-    <style>
-        body { font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif; }
-    </style>
-</head>
-<body class='bg-gray-50'>
-    <!-- 状态栏 -->
-    <div class='h-10'></div>
-    
-    <!-- 顶部导航 -->
-    <div class='px-4 py-3 flex justify-between items-center'>
-        <h1 class='text-xl font-bold'>发现</h1>
-        <div class='flex space-x-4'>
-            <i class='fas fa-search text-gray-600 text-lg'></i>
-            <i class='fas fa-bell text-gray-600 text-lg'></i>
-        </div>
-    </div>
-    
-    <!-- 搜索栏 -->
-    <div class='px-4 mb-4'>
-        <div class='bg-gray-200 rounded-full px-4 py-2 flex items-center'>
-            <i class='fas fa-search text-gray-500 mr-2'></i>
-            <span class='text-gray-500'>搜索服装、风格或场合</span>
-        </div>
-    </div>
-    
-    <!-- 分类标签 -->
-    <div class='px-2 overflow-x-auto'>
-        <div class='flex space-x-2 pb-2'>
-            <div class='px-4 py-1.5 bg-blue-500 text-white rounded-full text-sm whitespace-nowrap'>全部</div>
-            <div class='px-4 py-1.5 bg-gray-200 text-gray-700 rounded-full text-sm whitespace-nowrap'>日常穿搭</div>
-            <div class='px-4 py-1.5 bg-gray-200 text-gray-700 rounded-full text-sm whitespace-nowrap'>商务正装</div>
-            <div class='px-4 py-1.5 bg-gray-200 text-gray-700 rounded-full text-sm whitespace-nowrap'>派对装扮</div>
-            <div class='px-4 py-1.5 bg-gray-200 text-gray-700 rounded-full text-sm whitespace-nowrap'>运动休闲</div>
-        </div>
-    </div>
-    
-    <!-- 推荐内容 -->
-    <div class='p-4'>
-        <h2 class='text-lg font-bold mb-3'>为你推荐</h2>
-        <div class='grid grid-cols-2 gap-3'>
-            <div class='bg-white rounded-lg overflow-hidden shadow'>
-                <img src='https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=350&h=250&fit=crop' class='w-full h-40 object-cover' />
-                <div class='p-2'>
-                    <p class='text-sm font-medium'>秋季简约风搭配</p>
-                    <div class='flex items-center mt-1'>
-                        <img src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop' class='w-5 h-5 rounded-full' />
-                        <span class='text-xs text-gray-500 ml-1'>时尚达人</span>
-                    </div>
-                </div>
-            </div>
-            <div class='bg-white rounded-lg overflow-hidden shadow'>
-                <img src='https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=350&h=250&fit=crop' class='w-full h-40 object-cover' />
-                <div class='p-2'>
-                    <p class='text-sm font-medium'>职场精英装扮</p>
-                    <div class='flex items-center mt-1'>
-                        <img src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop' class='w-5 h-5 rounded-full' />
-                        <span class='text-xs text-gray-500 ml-1'>职场顾问</span>
-                    </div>
-                </div>
-            </div>
-            <div class='bg-white rounded-lg overflow-hidden shadow'>
-                <img src='https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=350&h=250&fit=crop' class='w-full h-40 object-cover' />
-                <div class='p-2'>
-                    <p class='text-sm font-medium'>夏日清凉穿搭</p>
-                    <div class='flex items-center mt-1'>
-                        <img src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=50&h=50&fit=crop' class='w-5 h-5 rounded-full' />
-                        <span class='text-xs text-gray-500 ml-1'>夏日专家</span>
-                    </div>
-                </div>
-            </div>
-            <div class='bg-white rounded-lg overflow-hidden shadow'>
-                <img src='https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=350&h=250&fit=crop' class='w-full h-40 object-cover' />
-                <div class='p-2'>
-                    <p class='text-sm font-medium'>派对闪耀造型</p>
-                    <div class='flex items-center mt-1'>
-                        <img src='https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=50&h=50&fit=crop' class='w-5 h-5 rounded-full' />
-                        <span class='text-xs text-gray-500 ml-1'>派对女王</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- 底部导航 -->
-    <div class='fixed bottom-0 left-0 right-0 bg-white border-t flex justify-around py-3'>
-        <div class='flex flex-col items-center'>
-            <i class='fas fa-home text-blue-500'></i>
-            <span class='text-xs mt-1 text-blue-500'>发现</span>
-        </div>
-        <div class='flex flex-col items-center'>
-            <i class='fas fa-tshirt text-gray-400'></i>
-            <span class='text-xs mt-1 text-gray-400'>换装</span>
-        </div>
-        <div class='flex flex-col items-center'>
-            <i class='fas fa-lightbulb text-gray-400'></i>
-            <span class='text-xs mt-1 text-gray-400'>灵感</span>
-        </div>
-        <div class='flex flex-col items-center'>
-            <i class='fas fa-user text-gray-400'></i>
-            <span class='text-xs mt-1 text-gray-400'>我的</span>
-        </div>
-    </div>
-</body>
-</html> 
+{\rtf1\ansi\ansicpg936\cocoartf2820
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="zh-CN">\
+<head>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">\
+    <title>StyleSync - \uc0\u39318 \u39029 </title>\
+    <script src="https://cdn.tailwindcss.com"></script>\
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">\
+    <style>\
+        body \{\
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;\
+        \}\
+        .status-bar \{\
+            height: 44px;\
+            padding-top: 10px;\
+        \}\
+        .custom-scroll::-webkit-scrollbar \{\
+            display: none;\
+        \}\
+        .bottom-nav \{\
+            position: fixed;\
+            bottom: 0;\
+            left: 0;\
+            right: 0;\
+            background-color: white;\
+            border-top: 1px solid #e5e7eb;\
+            padding: 10px 0;\
+            z-index: 50;\
+        \}\
+    </style>\
+</head>\
+<body class="bg-gray-50">\
+    <!-- \uc0\u29366 \u24577 \u26639  -->\
+    <div class="status-bar flex justify-between px-5 bg-white">\
+        <div class="time font-semibold">9:41</div>\
+        <div class="icons flex space-x-2">\
+            <i class="fas fa-signal"></i>\
+            <i class="fas fa-wifi"></i>\
+            <i class="fas fa-battery-full"></i>\
+        </div>\
+    </div>\
+    \
+    <!-- \uc0\u20027 \u20869 \u23481 \u21306  -->\
+    <div class="pb-20 overflow-y-auto custom-scroll">\
+        <!-- \uc0\u22836 \u37096 \u25628 \u32034 \u26639  -->\
+        <div class="px-4 py-3 sticky top-0 bg-white z-10 shadow-sm">\
+            <div class="flex items-center justify-between mb-4">\
+                <h1 class="text-2xl font-bold text-blue-600">StyleSync</h1>\
+                <div class="flex space-x-3">\
+                    <button class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">\
+                        <i class="fas fa-bell text-gray-500"></i>\
+                    </button>\
+                    <button class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">\
+                        <i class="fas fa-search text-gray-500"></i>\
+                    </button>\
+                </div>\
+            </div>\
+            <div class="flex space-x-2 overflow-x-auto pb-2 custom-scroll">\
+                <button class="px-4 py-2 bg-blue-600 text-white rounded-full whitespace-nowrap">\uc0\u20026 \u20320 \u25512 \u33616 </button>\
+                <button class="px-4 py-2 bg-gray-100 text-gray-600 rounded-full whitespace-nowrap">\uc0\u27969 \u34892 \u36235 \u21183 </button>\
+                <button class="px-4 py-2 bg-gray-100 text-gray-600 rounded-full whitespace-nowrap">\uc0\u20241 \u38386 \u39118 \u26684 </button>\
+                <button class="px-4 py-2 bg-gray-100 text-gray-600 rounded-full whitespace-nowrap">\uc0\u21830 \u21153 \u27491 \u35013 </button>\
+                <button class="px-4 py-2 bg-gray-100 text-gray-600 rounded-full whitespace-nowrap">\uc0\u36816 \u21160 \u35013 </button>\
+            </div>\
+        </div>\
+        \
+        <!-- \uc0\u20027 \u35201 \u20869 \u23481  -->\
+        <div class="px-4 pt-2">\
+            <!-- AI\uc0\u21151 \u33021 \u21345 \u29255  -->\
+            <div class="bg-gradient-to-r from-blue-600 to-blue-400 rounded-2xl p-4 text-white mb-6">\
+                <div class="flex justify-between items-center">\
+                    <div class="w-2/3">\
+                        <h3 class="text-xl font-bold mb-2">AI\uc0\u35774 \u35745 \u24037 \u20316 \u23460 </h3>\
+                        <p class="text-sm opacity-90 mb-4">\uc0\u21019 \u24314 \u20010 \u24615 \u21270 \u26381 \u35013 \u35774 \u35745 \u65292 \u34394 \u25311 \u35797 \u31359 </p>\
+                        <button class="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium">\uc0\u24320 \u22987 \u21019 \u20316 </button>\
+                    </div>\
+                    <div class="w-1/3">\
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=120&h=180&fit=crop&crop=faces" class="rounded-lg w-full h-32 object-cover" alt="AI\uc0\u35774 \u35745 ">\
+                    </div>\
+                </div>\
+            </div>\
+            \
+            <!-- \uc0\u20170 \u26085 \u25512 \u33616  -->\
+            <h2 class="text-lg font-bold mb-3">\uc0\u20170 \u26085 \u25512 \u33616 </h2>\
+            <div class="grid grid-cols-2 gap-3 mb-6">\
+                <div class="rounded-xl overflow-hidden bg-white shadow-sm">\
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=180&h=240&fit=crop" class="w-full h-48 object-cover" alt="\uc0\u25512 \u33616 1">\
+                    <div class="p-3">\
+                        <p class="text-sm font-medium">\uc0\u31179 \u23395 \u22806 \u22871 \u31995 \u21015 </p>\
+                        <p class="text-xs text-gray-500">\uc0\u22522 \u20110 \u20320 \u30340 \u39118 \u26684 \u20559 \u22909 </p>\
+                    </div>\
+                </div>\
+                <div class="rounded-xl overflow-hidden bg-white shadow-sm">\
+                    <img src="https://images.unsplash.com/photo-1566206091558-7f218b696731?w=180&h=240&fit=crop" class="w-full h-48 object-cover" alt="\uc0\u25512 \u33616 2">\
+                    <div class="p-3">\
+                        <p class="text-sm font-medium">\uc0\u22797 \u21476 \u29275 \u20180 \u39118 </p>\
+                        <p class="text-xs text-gray-500">\uc0\u24403 \u23395 \u27969 \u34892 \u36235 \u21183 </p>\
+                    </div>\
+                </div>\
+            </div>\
+            \
+            <!-- \uc0\u35774 \u35745 \u28789 \u24863  -->\
+            <h2 class="text-lg font-bold mb-3">\uc0\u35774 \u35745 \u28789 \u24863 </h2>\
+            <div class="flex space-x-4 overflow-x-auto pb-4 custom-scroll">\
+                <div class="w-36 flex-shrink-0">\
+                    <img src="https://images.unsplash.com/photo-1603189343302-e603f7add05a?w=144&h=216&fit=crop" class="rounded-lg w-full h-48 object-cover mb-2" alt="\uc0\u28789 \u24863 1">\
+                    <p class="text-sm font-medium">\uc0\u26497 \u31616 \u20027 \u20041 </p>\
+                    <p class="text-xs text-gray-500">12\uc0\u20010 \u35774 \u35745 </p>\
+                </div>\
+                <div class="w-36 flex-shrink-0">\
+                    <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=144&h=216&fit=crop" class="rounded-lg w-full h-48 object-cover mb-2" alt="\uc0\u28789 \u24863 2">\
+                    <p class="text-sm font-medium">\uc0\u36816 \u21160 \u31185 \u25216 \u39118 </p>\
+                    <p class="text-xs text-gray-500">8\uc0\u20010 \u35774 \u35745 </p>\
+                </div>\
+                <div class="w-36 flex-shrink-0">\
+                    <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=144&h=216&fit=crop" class="rounded-lg w-full h-48 object-cover mb-2" alt="\uc0\u28789 \u24863 3">\
+                    <p class="text-sm font-medium">\uc0\u22797 \u21476 \u26102 \u23578 </p>\
+                    <p class="text-xs text-gray-500">15\uc0\u20010 \u35774 \u35745 </p>\
+                </div>\
+                <div class="w-36 flex-shrink-0">\
+                    <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=144&h=216&fit=crop" class="rounded-lg w-full h-48 object-cover mb-2" alt="\uc0\u28789 \u24863 4">\
+                    <p class="text-sm font-medium">\uc0\u34903 \u22836 \u28526 \u27969 </p>\
+                    <p class="text-xs text-gray-500">9\uc0\u20010 \u35774 \u35745 </p>\
+                </div>\
+            </div>\
+            \
+            <!-- \uc0\u31038 \u21306 \u31934 \u36873  -->\
+            <h2 class="text-lg font-bold mb-3 mt-6">\uc0\u31038 \u21306 \u31934 \u36873 </h2>\
+            <div class="space-y-4 mb-6">\
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm p-3">\
+                    <div class="flex items-center space-x-2 mb-3">\
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=32&h=32&fit=crop&crop=faces" class="w-8 h-8 rounded-full" alt="\uc0\u29992 \u25143 ">\
+                        <div>\
+                            <p class="text-sm font-medium">@\uc0\u26102 \u23578 \u36798 \u20154 </p>\
+                            <p class="text-xs text-gray-500">2\uc0\u23567 \u26102 \u21069 </p>\
+                        </div>\
+                    </div>\
+                    <p class="text-sm mb-3">\uc0\u20998 \u20139 \u25105 \u29992 AI\u35774 \u35745 \u30340 \u27861 \u24335 \u22797 \u21476 \u39118 \u31359 \u25645 \u65292 \u38750 \u24120 \u28385 \u24847 \u36825 \u20010 \u25928 \u26524 \u65281 </p>\
+                    <img src="https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?w=375&h=250&fit=crop" class="w-full h-48 object-cover rounded-lg mb-3" alt="\uc0\u31038 \u21306 1">\
+                    <div class="flex justify-between text-gray-500 text-sm">\
+                        <div class="flex space-x-4">\
+                            <div class="flex items-center space-x-1">\
+                                <i class="far fa-heart"></i>\
+                                <span>128</span>\
+                            </div>\
+                            <div class="flex items-center space-x-1">\
+                                <i class="far fa-comment"></i>\
+                                <span>24</span>\
+                            </div>\
+                        </div>\
+                        <div class="flex items-center space-x-1">\
+                            <i class="far fa-bookmark"></i>\
+                            <span>\uc0\u25910 \u34255 </span>\
+                        </div>\
+                    </div>\
+                </div>\
+            </div>\
+        </div>\
+    </div>\
+    \
+    <!-- \uc0\u24213 \u37096 \u23548 \u33322  -->\
+    <div class="bottom-nav">\
+        <div class="flex justify-around">\
+            <div class="flex flex-col items-center text-blue-600">\
+                <i class="fas fa-home text-xl"></i>\
+                <span class="text-xs mt-1">\uc0\u39318 \u39029 </span>\
+            </div>\
+            <div class="flex flex-col items-center text-gray-400">\
+                <i class="fas fa-magic text-xl"></i>\
+                <span class="text-xs mt-1">AI\uc0\u24037 \u20316 \u23460 </span>\
+            </div>\
+            <div class="flex flex-col items-center text-gray-400">\
+                <i class="fas fa-folder text-xl"></i>\
+                <span class="text-xs mt-1">\uc0\u35774 \u35745 \u31354 \u38388 </span>\
+            </div>\
+            <div class="flex flex-col items-center text-gray-400">\
+                <i class="fas fa-users text-xl"></i>\
+                <span class="text-xs mt-1">\uc0\u31038 \u21306 </span>\
+            </div>\
+            <div class="flex flex-col items-center text-gray-400">\
+                <i class="fas fa-user text-xl"></i>\
+                <span class="text-xs mt-1">\uc0\u25105 \u30340 </span>\
+            </div>\
+        </div>\
+    </div>\
+</body>\
+</html>\
+}
