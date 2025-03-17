@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link href='https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css' rel='stylesheet'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css'>
+    <style>
+        body { font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif; }
+    </style>
+</head>
+<body class='bg-gray-50'>
+    <!-- 状态栏 -->
+    <div class='h-10'></div>
+    
+    <!-- 顶部导航 -->
+    <div class='px-4 py-3 flex justify-between items-center'>
+        <h1 class='text-xl font-bold'>发现</h1>
+        <div class='flex space-x-4'>
+            <i class='fas fa-search text-gray-600 text-lg'></i>
+            <i class='fas fa-bell text-gray-600 text-lg'></i>
+        </div>
+    </div>
+    
+    <!-- 搜索栏 -->
+    <div class='px-4 mb-4'>
+        <div class='bg-gray-200 rounded-full px-4 py-2 flex items-center'>
+            <i class='fas fa-search text-gray-500 mr-2'></i>
+            <span class='text-gray-500'>搜索服装、风格或场合</span>
+        </div>
+    </div>
+    
+    <!-- 分类标签 -->
+    <div class='px-2 overflow-x-auto'>
+        <div class='flex space-x-2 pb-2'>
+            <div class='px-4 py-1.5 bg-blue-500 text-white rounded-full text-sm whitespace-nowrap'>全部</div>
+            <div class='px-4 py-1.5 bg-gray-200 text-gray-700 rounded-full text-sm whitespace-nowrap'>日常穿搭</div>
+            <div class='px-4 py-1.5 bg-gray-200 text-gray-700 rounded-full text-sm whitespace-nowrap'>商务正装</div>
+            <div class='px-4 py-1.5 bg-gray-200 text-gray-700 rounded-full text-sm whitespace-nowrap'>派对装扮</div>
+            <div class='px-4 py-1.5 bg-gray-200 text-gray-700 rounded-full text-sm whitespace-nowrap'>运动休闲</div>
+        </div>
+    </div>
+    
+    <!-- 推荐内容 -->
+    <div class='p-4'>
+        <h2 class='text-lg font-bold mb-3'>为你推荐</h2>
+        <div class='grid grid-cols-2 gap-3'>
+            <div class='bg-white rounded-lg overflow-hidden shadow'>
+                <img src='https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=350&h=250&fit=crop' class='w-full h-40 object-cover' />
+                <div class='p-2'>
+                    <p class='text-sm font-medium'>秋季简约风搭配</p>
+                    <div class='flex items-center mt-1'>
+                        <img src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop' class='w-5 h-5 rounded-full' />
+                        <span class='text-xs text-gray-500 ml-1'>时尚达人</span>
+                    </div>
+                </div>
+            </div>
+            <div class='bg-white rounded-lg overflow-hidden shadow'>
+                <img src='https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=350&h=250&fit=crop' class='w-full h-40 object-cover' />
+                <div class='p-2'>
+                    <p class='text-sm font-medium'>职场精英装扮</p>
+                    <div class='flex items-center mt-1'>
+                        <img src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop' class='w-5 h-5 rounded-full' />
+                        <span class='text-xs text-gray-500 ml-1'>职场顾问</span>
+                    </div>
+                </div>
+            </div>
+            <div class='bg-white rounded-lg overflow-hidden shadow'>
+                <img src='https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=350&h=250&fit=crop' class='w-full h-40 object-cover' />
+                <div class='p-2'>
+                    <p class='text-sm font-medium'>夏日清凉穿搭</p>
+                    <div class='flex items-center mt-1'>
+                        <img src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=50&h=50&fit=crop' class='w-5 h-5 rounded-full' />
+                        <span class='text-xs text-gray-500 ml-1'>夏日专家</span>
+                    </div>
+                </div>
+            </div>
+            <div class='bg-white rounded-lg overflow-hidden shadow'>
+                <img src='https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=350&h=250&fit=crop' class='w-full h-40 object-cover' />
+                <div class='p-2'>
+                    <p class='text-sm font-medium'>派对闪耀造型</p>
+                    <div class='flex items-center mt-1'>
+                        <img src='https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=50&h=50&fit=crop' class='w-5 h-5 rounded-full' />
+                        <span class='text-xs text-gray-500 ml-1'>派对女王</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部导航 -->
+    <div class='fixed bottom-0 left-0 right-0 bg-white border-t flex justify-around py-3'>
+        <div class='flex flex-col items-center'>
+            <i class='fas fa-home text-blue-500'></i>
+            <span class='text-xs mt-1 text-blue-500'>发现</span>
+        </div>
+        <div class='flex flex-col items-center'>
+            <i class='fas fa-tshirt text-gray-400'></i>
+            <span class='text-xs mt-1 text-gray-400'>换装</span>
+        </div>
+        <div class='flex flex-col items-center'>
+            <i class='fas fa-lightbulb text-gray-400'></i>
+            <span class='text-xs mt-1 text-gray-400'>灵感</span>
+        </div>
+        <div class='flex flex-col items-center'>
+            <i class='fas fa-user text-gray-400'></i>
+            <span class='text-xs mt-1 text-gray-400'>我的</span>
+        </div>
+    </div>
+</body>
+</html> 

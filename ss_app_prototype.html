@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI服装换装APP原型</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+        }
+        .phone-container {
+            width: 375px;
+            height: 812px;
+            border: 12px solid #111;
+            border-radius: 36px;
+            overflow: hidden;
+            position: relative;
+            background: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin: 20px;
+            display: inline-block;
+        }
+        .phone-notch {
+            position: absolute;
+            width: 150px;
+            height: 30px;
+            background: #111;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            z-index: 10;
+        }
+        .screen {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .prototype-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .prototype-title {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .screen-title {
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="prototype-container">
+        <div class="prototype-title">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">AI服装换装APP原型</h1>
+            <p class="text-gray-600">基于iPhone标准尺寸 (375px宽度)</p>
+        </div>
+
+        <!-- 首页/发现 -->
+        <div>
+            <div class="screen-title">首页/发现</div>
+            <div class="phone-container">
+                <div class="phone-notch"></div>
+                <iframe src="home.html" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- AI换装页面 -->
+        <div>
+            <div class="screen-title">AI换装</div>
+            <div class="phone-container">
+                <div class="phone-notch"></div>
+                <iframe src="ai-dress.html" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- 风格推荐页面 -->
+        <div>
+            <div class="screen-title">风格推荐</div>
+            <div class="phone-container">
+                <div class="phone-notch"></div>
+                <iframe src="style-recommend.html" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- 文字生成设计页面 -->
+        <div>
+            <div class="screen-title">文字生成设计</div>
+            <div class="phone-container">
+                <div class="phone-notch"></div>
+                <iframe src="text-to-design.html" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- 个人中心页面 -->
+        <div>
+            <div class="screen-title">个人中心</div>
+            <div class="phone-container">
+                <div class="phone-notch"></div>
+                <iframe src="profile.html" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
