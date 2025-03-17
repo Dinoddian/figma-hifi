@@ -1,129 +1,121 @@
-{\rtf1\ansi\ansicpg936\cocoartf2820
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI服装换装APP原型</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+        }
+        .phone-container {
+            width: 375px;
+            height: 812px;
+            border: 12px solid #111;
+            border-radius: 36px;
+            overflow: hidden;
+            position: relative;
+            background: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin: 20px;
+            display: inline-block;
+        }
+        .phone-notch {
+            position: absolute;
+            width: 150px;
+            height: 30px;
+            background: #111;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            z-index: 10;
+        }
+        .screen {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .prototype-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .prototype-title {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .screen-title {
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        /* 确保iframe内容正确显示 */
+        iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="prototype-container">
+        <div class="prototype-title">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">AI服装换装APP原型</h1>
+            <p class="text-gray-600">基于iPhone标准尺寸 (375px宽度)</p>
+        </div>
 
-\f0\fs24 \cf0 <!DOCTYPE html>\
-<html lang="zh-CN">\
-<head>\
-    <meta charset="UTF-8">\
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-    <title>StyleSync - AI\uc0\u26381 \u35013 \u25442 \u35013 APP\u21407 \u22411 </title>\
-    <script src="https://cdn.tailwindcss.com"></script>\
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">\
-    <style>\
-        body \{\
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;\
-            background-color: #f5f5f7;\
-        \}\
-        .prototype-container \{\
-            display: flex;\
-            flex-wrap: wrap;\
-            gap: 30px;\
-            justify-content: center;\
-            padding: 20px;\
-        \}\
-        .prototype-frame \{\
-            width: 375px;\
-            height: 812px;\
-            border: 12px solid #1a1a1a;\
-            border-radius: 40px;\
-            overflow: hidden;\
-            position: relative;\
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);\
-        \}\
-        .prototype-frame iframe \{\
-            width: 100%;\
-            height: 100%;\
-            border: none;\
-        \}\
-        .frame-title \{\
-            text-align: center;\
-            font-weight: 600;\
-            margin-top: 10px;\
-            color: #333;\
-        \}\
-        .header \{\
-            background: linear-gradient(to right, #3B82F6, #EC4899);\
-            color: white;\
-            padding: 20px;\
-            text-align: center;\
-            margin-bottom: 30px;\
-        \}\
-    </style>\
-</head>\
-<body>\
-    <div class="header">\
-        <h1 class="text-3xl font-bold mb-2">StyleSync - AI\uc0\u26381 \u35013 \u25442 \u35013 APP\u21407 \u22411 </h1>\
-        <p class="text-lg">\uc0\u34394 \u25311 \u35797 \u34915  | \u39118 \u26684 \u25512 \u33616  | AI\u35774 \u35745  | \u35774 \u35745 \u24037 \u20316 \u21306  | \u31038 \u21306 \u20998 \u20139 </p>\
-    </div>\
-\
-    <div class="prototype-container">\
-        <div>\
-            <div class="prototype-frame">\
-                <iframe src="home.html" title="\uc0\u39318 \u39029 "></iframe>\
-            </div>\
-            <div class="frame-title">\uc0\u39318 \u39029 </div>\
-        </div>\
-        \
-        <div>\
-            <div class="prototype-frame">\
-                <iframe src="ai_studio.html" title="AI\uc0\u24037 \u20316 \u23460 "></iframe>\
-            </div>\
-            <div class="frame-title">AI\uc0\u24037 \u20316 \u23460 </div>\
-        </div>\
-        \
-        <div>\
-            <div class="prototype-frame">\
-                <iframe src="virtual_tryon.html" title="\uc0\u34394 \u25311 \u35797 \u34915 "></iframe>\
-            </div>\
-            <div class="frame-title">\uc0\u34394 \u25311 \u35797 \u34915 </div>\
-        </div>\
-        \
-        <div>\
-            <div class="prototype-frame">\
-                <iframe src="text_to_design.html" title="\uc0\u25991 \u23383 \u29983 \u25104 \u35774 \u35745 "></iframe>\
-            </div>\
-            <div class="frame-title">\uc0\u25991 \u23383 \u29983 \u25104 \u35774 \u35745 </div>\
-        </div>\
-        \
-        <div>\
-            <div class="prototype-frame">\
-                <iframe src="image_to_design.html" title="\uc0\u22270 \u29255 \u29983 \u25104 \u35774 \u35745 "></iframe>\
-            </div>\
-            <div class="frame-title">\uc0\u22270 \u29255 \u29983 \u25104 \u35774 \u35745 </div>\
-        </div>\
-        \
-        <div>\
-            <div class="prototype-frame">\
-                <iframe src="style_advisor.html" title="\uc0\u39118 \u26684 \u39038 \u38382 "></iframe>\
-            </div>\
-            <div class="frame-title">\uc0\u39118 \u26684 \u39038 \u38382 </div>\
-        </div>\
-        \
-        <div>\
-            <div class="prototype-frame">\
-                <iframe src="design_space.html" title="\uc0\u35774 \u35745 \u31354 \u38388 "></iframe>\
-            </div>\
-            <div class="frame-title">\uc0\u35774 \u35745 \u31354 \u38388 </div>\
-        </div>\
-        \
-        <div>\
-            <div class="prototype-frame">\
-                <iframe src="community.html" title="\uc0\u31038 \u21306 "></iframe>\
-            </div>\
-            <div class="frame-title">\uc0\u31038 \u21306 </div>\
-        </div>\
-        \
-        <div>\
-            <div class="prototype-frame">\
-                <iframe src="profile.html" title="\uc0\u20010 \u20154 \u20013 \u24515 "></iframe>\
-            </div>\
-            <div class="frame-title">\uc0\u20010 \u20154 \u20013 \u24515 </div>\
-        </div>\
-    </div>\
-</body>\
-</html>\
-}
+        <!-- 首页/发现 -->
+        <div>
+            <div class="screen-title">首页/发现</div>
+            <div class="phone-container">
+                <div class="phone-notch"></div>
+                <iframe src="home.html" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- AI换装页面 -->
+        <div>
+            <div class="screen-title">AI换装</div>
+            <div class="phone-container">
+                <div class="phone-notch"></div>
+                <iframe src="ai-dress.html" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- 风格推荐页面 -->
+        <div>
+            <div class="screen-title">风格推荐</div>
+            <div class="phone-container">
+                <div class="phone-notch"></div>
+                <iframe src="style-recommend.html" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- 文字生成设计页面 -->
+        <div>
+            <div class="screen-title">文字生成设计</div>
+            <div class="phone-container">
+                <div class="phone-notch"></div>
+                <iframe src="text-to-design.html" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- 个人中心页面 -->
+        <div>
+            <div class="screen-title">个人中心</div>
+            <div class="phone-container">
+                <div class="phone-notch"></div>
+                <iframe src="profile.html" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

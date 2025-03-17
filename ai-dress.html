@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link href='https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css' rel='stylesheet'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css'>
+    <style>
+        body { font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif; }
+    </style>
+</head>
+<body class='bg-gray-50'>
+    <!-- 状态栏 -->
+    <div class='h-10'></div>
+    
+    <!-- 顶部导航 -->
+    <div class='px-4 py-3 flex justify-between items-center'>
+        <h1 class='text-xl font-bold'>AI换装</h1>
+        <div class='flex space-x-4'>
+            <i class='fas fa-history text-gray-600 text-lg'></i>
+            <i class='fas fa-cog text-gray-600 text-lg'></i>
+        </div>
+    </div>
+    
+    <!-- 主内容区 -->
+    <div class='p-4'>
+        <!-- 上传区域 -->
+        <div class='bg-white rounded-lg p-4 shadow-sm mb-4'>
+            <div class='border-2 border-dashed border-gray-300 rounded-lg p-6 flex flex-col items-center justify-center'>
+                <i class='fas fa-camera text-4xl text-gray-400 mb-3'></i>
+                <p class='text-gray-500 text-center mb-2'>上传照片或选择模特</p>
+                <button class='bg-blue-500 text-white px-6 py-2 rounded-full text-sm font-medium'>
+                    选择照片
+                </button>
+            </div>
+        </div>
+        
+        <!-- 换装选项 -->
+        <div class='bg-white rounded-lg p-4 shadow-sm mb-4'>
+            <h3 class='font-bold mb-3'>选择换装风格</h3>
+            <div class='grid grid-cols-3 gap-3 mb-4'>
+                <div class='bg-gray-100 rounded-lg p-2 flex flex-col items-center'>
+                    <img src='https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=100&h=100&fit=crop' class='w-16 h-16 rounded-full object-cover mb-1' />
+                    <span class='text-xs'>商务正装</span>
+                </div>
+                <div class='bg-gray-100 rounded-lg p-2 flex flex-col items-center'>
+                    <img src='https://images.unsplash.com/photo-1523260578934-e9318da58c8d?w=100&h=100&fit=crop' class='w-16 h-16 rounded-full object-cover mb-1' />
+                    <span class='text-xs'>休闲风格</span>
+                </div>
+                <div class='bg-gray-100 rounded-lg p-2 flex flex-col items-center'>
+                    <img src='https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?w=100&h=100&fit=crop' class='w-16 h-16 rounded-full object-cover mb-1' />
+                    <span class='text-xs'>运动装扮</span>
+                </div>
+                <div class='bg-gray-100 rounded-lg p-2 flex flex-col items-center'>
+                    <img src='https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=100&h=100&fit=crop' class='w-16 h-16 rounded-full object-cover mb-1' />
+                    <span class='text-xs'>派对时尚</span>
+                </div>
+                <div class='bg-gray-100 rounded-lg p-2 flex flex-col items-center'>
+                    <img src='https://images.unsplash.com/photo-1509631179647-0177331693ae?w=100&h=100&fit=crop' class='w-16 h-16 rounded-full object-cover mb-1' />
+                    <span class='text-xs'>民族风情</span>
+                </div>
+                <div class='bg-gray-100 rounded-lg p-2 flex flex-col items-center'>
+                    <img src='https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop' class='w-16 h-16 rounded-full object-cover mb-1' />
+                    <span class='text-xs'>更多风格</span>
+                </div>
+            </div>
+            
+            <h3 class='font-bold mb-3'>自定义描述</h3>
+            <div class='mb-4'>
+                <textarea class='w-full border border-gray-300 rounded-lg p-3 text-sm' rows='3' placeholder='描述你想要的服装风格、颜色、场合等...'></textarea>
+            </div>
+            
+            <button class='w-full bg-blue-500 text-white py-3 rounded-lg font-medium'>
+                开始AI换装
+            </button>
+        </div>
+        
+        <!-- 历史记录 -->
+        <div class='bg-white rounded-lg p-4 shadow-sm'>
+            <div class='flex justify-between items-center mb-3'>
+                <h3 class='font-bold'>最近换装</h3>
+                <span class='text-blue-500 text-sm'>查看全部</span>
+            </div>
+            <div class='flex space-x-3 overflow-x-auto pb-2'>
+                <div class='w-24 flex-shrink-0'>
+                    <img src='https://images.unsplash.com/photo-1483985988355-763728e1935b?w=150&h=200&fit=crop' class='w-full h-32 object-cover rounded-lg mb-1' />
+                    <p class='text-xs text-gray-500'>2小时前</p>
+                </div>
+                <div class='w-24 flex-shrink-0'>
+                    <img src='https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=150&h=200&fit=crop' class='w-full h-32 object-cover rounded-lg mb-1' />
+                    <p class='text-xs text-gray-500'>昨天</p>
+                </div>
+                <div class='w-24 flex-shrink-0'>
+                    <img src='https://images.unsplash.com/photo-1550614000-4895a10e1bfd?w=150&h=200&fit=crop' class='w-full h-32 object-cover rounded-lg mb-1' />
+                    <p class='text-xs text-gray-500'>3天前</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部导航 -->
+    <div class='fixed bottom-0 left-0 right-0 bg-white border-t flex justify-around py-3'>
+        <div class='flex flex-col items-center'>
+            <i class='fas fa-home text-gray-400'></i>
+            <span class='text-xs mt-1 text-gray-400'>发现</span>
+        </div>
+        <div class='flex flex-col items-center'>
+            <i class='fas fa-tshirt text-blue-500'></i>
+            <span class='text-xs mt-1 text-blue-500'>换装</span>
+        </div>
+        <div class='flex flex-col items-center'>
+            <i class='fas fa-lightbulb text-gray-400'></i>
+            <span class='text-xs mt-1 text-gray-400'>灵感</span>
+        </div>
+        <div class='flex flex-col items-center'>
+            <i class='fas fa-user text-gray-400'></i>
+            <span class='text-xs mt-1 text-gray-400'>我的</span>
+        </div>
+    </div>
+</body>
+</html> 
