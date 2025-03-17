@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        .clothing-item {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="p-4 pb-20">
+        <!-- 顶部导航 -->
+        <div class="flex items-center mb-6">
+            <button class="mr-2">
+                <i class="fas fa-arrow-left text-gray-700"></i>
+            </button>
+            <h1 class="text-xl font-bold flex-1 text-center">AI换装</h1>
+            <button>
+                <i class="fas fa-ellipsis-v text-gray-700"></i>
+            </button>
+        </div>
+        
+        <!-- 主内容区 -->
+        <div class="mb-6">
+            <!-- 图片预览区 -->
+            <div class="bg-white rounded-xl p-4 shadow-sm mb-4">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="w-full h-96 object-cover rounded-lg" />
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="bg-black bg-opacity-50 text-white px-4 py-2 rounded-full">
+                            <i class="fas fa-camera mr-2"></i>上传照片
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 flex justify-center space-x-4">
+                    <button class="bg-purple-700 text-white px-6 py-2 rounded-full">
+                        <i class="fas fa-magic mr-2"></i>开始换装
+                    </button>
+                    <button class="border border-purple-700 text-purple-700 px-6 py-2 rounded-full">
+                        <i class="fas fa-save mr-2"></i>保存
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 服装选择区 -->
+            <div>
+                <h2 class="text-lg font-bold mb-3">选择服装</h2>
+                
+                <!-- 分类标签 -->
+                <div class="flex space-x-2 mb-4 overflow-x-auto pb-2">
+                    <button class="bg-purple-700 text-white px-4 py-1 rounded-full text-sm">全部</button>
+                    <button class="bg-white text-gray-700 px-4 py-1 rounded-full text-sm shadow-sm">上衣</button>
+                    <button class="bg-white text-gray-700 px-4 py-1 rounded-full text-sm shadow-sm">裤装</button>
+                    <button class="bg-white text-gray-700 px-4 py-1 rounded-full text-sm shadow-sm">裙装</button>
+                    <button class="bg-white text-gray-700 px-4 py-1 rounded-full text-sm shadow-sm">外套</button>
+                    <button class="bg-white text-gray-700 px-4 py-1 rounded-full text-sm shadow-sm">鞋子</button>
+                </div>
+                
+                <!-- 服装列表 -->
+                <div class="grid grid-cols-4 gap-3">
+                    <div class="clothing-item overflow-hidden shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="clothing-item overflow-hidden shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="clothing-item overflow-hidden shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="clothing-item overflow-hidden shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="clothing-item overflow-hidden shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1591369822096-ffd140ec948f?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="clothing-item overflow-hidden shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1578587018452-892bacefd3f2?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="clothing-item overflow-hidden shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1560243563-062bfc001d68?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="clothing-item overflow-hidden shadow-sm flex items-center justify-center bg-gray-100">
+                        <i class="fas fa-plus text-gray-400 text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div class="fixed bottom-0 left-0 right-0

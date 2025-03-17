@@ -1,7 +1,7 @@
 {
-  "name": "ai-fashion-app-prototype",
+  "name": "login-app-prototype",
   "version": "1.0.0",
-  "description": "AI服装换装APP原型",
+  "description": "登录APP原型",
   "scripts": {
     "start": "serve"
   },
