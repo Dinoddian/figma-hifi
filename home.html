@@ -1,165 +1,371 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        body {
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-        .story-avatar {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            padding: 3px;
-            background: linear-gradient(45deg, #8A2BE2, #FF1493);
-        }
-        .story-avatar img {
-            border: 3px solid white;
-            border-radius: 50%;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>首页</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f8fafc;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .home-container {
+      padding-bottom: 80px;
+    }
+    .header {
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .app-title {
+      font-size: 20px;
+      font-weight: 700;
+      background: linear-gradient(to right, #6366F1, #8B5CF6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .header-icons {
+      display: flex;
+      gap: 16px;
+      color: #64748b;
+      font-size: 18px;
+    }
+    .search-bar {
+      margin: 16px 20px;
+      padding: 12px 16px;
+      background-color: #f1f5f9;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      color: #64748b;
+    }
+    .search-bar i {
+      margin-right: 8px;
+    }
+    .search-input {
+      border: none;
+      background: transparent;
+      width: 100%;
+      font-size: 14px;
+      color: #334155;
+    }
+    .search-input::placeholder {
+      color: #94a3b8;
+    }
+    .search-input:focus {
+      outline: none;
+    }
+    .feature-cards {
+      display: flex;
+      padding: 0 20px;
+      gap: 12px;
+      overflow-x: auto;
+      margin-bottom: 24px;
+      scrollbar-width: none;
+    }
+    .feature-cards::-webkit-scrollbar {
+      display: none;
+    }
+    .feature-card {
+      flex: 0 0 140px;
+      height: 180px;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+    }
+    .feature-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .feature-card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 12px;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+      color: white;
+    }
+    .feature-card-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .feature-card-subtitle {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+    .section-title {
+      padding: 0 20px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .section-title-more {
+      font-size: 14px;
+      font-weight: 500;
+      color: #6366F1;
+    }
+    .inspiration-grid {
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .inspiration-item {
+      border-radius: 16px;
+      overflow: hidden;
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .inspiration-image {
+      height: 180px;
+      overflow: hidden;
+    }
+    .inspiration-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .inspiration-info {
+      padding: 12px;
+    }
+    .inspiration-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 4px;
+    }
+    .inspiration-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #64748b;
+    }
+    .inspiration-user {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .inspiration-user-avatar {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .inspiration-user-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: white;
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0 8px;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 10px;
+      color: #64748b;
+    }
+    .nav-item.active {
+      color: #6366F1;
+    }
+    .nav-icon {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+    .create-button {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(to right, #6366F1, #8B5CF6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+      margin-top: -20px;
+    }
+  </style>
 </head>
-<body class="bg-gray-50">
-    <div class="p-4 pb-20">
-        <!-- 顶部导航 -->
-        <div class="flex justify-between items-center mb-6">
-            <h1 class="text-2xl font-bold text-purple-700">StyleSwap</h1>
-            <div class="flex space-x-4">
-                <button class="text-gray-700">
-                    <i class="fas fa-search text-xl"></i>
-                </button>
-                <button class="text-gray-700 relative">
-                    <i class="fas fa-bell text-xl"></i>
-                    <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
-                </button>
-            </div>
-        </div>
-        
-        <!-- 风格故事 -->
-        <div class="mb-6">
-            <div class="flex space-x-4 overflow-x-auto pb-2">
-                <div class="flex flex-col items-center">
-                    <div class="story-avatar">
-                        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover rounded-full" />
-                    </div>
-                    <span class="text-xs mt-1">休闲风</span>
-                </div>
-                <div class="flex flex-col items-center">
-                    <div class="story-avatar">
-                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover rounded-full" />
-                    </div>
-                    <span class="text-xs mt-1">商务风</span>
-                </div>
-                <div class="flex flex-col items-center">
-                    <div class="story-avatar">
-                        <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover rounded-full" />
-                    </div>
-                    <span class="text-xs mt-1">街头风</span>
-                </div>
-                <div class="flex flex-col items-center">
-                    <div class="story-avatar">
-                        <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover rounded-full" />
-                    </div>
-                    <span class="text-xs mt-1">复古风</span>
-                </div>
-                <div class="flex flex-col items-center">
-                    <div class="story-avatar">
-                        <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover rounded-full" />
-                    </div>
-                    <span class="text-xs mt-1">运动风</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 为你推荐 -->
-        <div class="mb-6">
-            <h2 class="text-lg font-bold mb-3">为你推荐</h2>
-            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="w-full h-48 object-cover" />
-                <div class="p-4">
-                    <h3 class="font-bold">秋季新款搭配</h3>
-                    <p class="text-sm text-gray-600 mt-1">根据你的风格偏好推荐的秋季穿搭</p>
-                    <button class="mt-3 bg-purple-700 text-white px-4 py-2 rounded-full text-sm">查看详情</button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 热门搭配 -->
-        <div>
-            <div class="flex justify-between items-center mb-3">
-                <h2 class="text-lg font-bold">热门搭配</h2>
-                <a href="#" class="text-sm text-purple-700">查看全部</a>
-            </div>
-            <div class="grid grid-cols-2 gap-3">
-                <div class="bg-white rounded-xl overflow-hidden shadow-sm">
-                    <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" class="w-full h-32 object-cover" />
-                    <div class="p-2">
-                        <p class="text-xs font-medium">简约职场风</p>
-                        <div class="flex items-center mt-1">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" class="w-5 h-5 rounded-full mr-1" />
-                            <span class="text-xs text-gray-500">艾米</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl overflow-hidden shadow-sm">
-                    <img src="https://images.unsplash.com/photo-1479064555552-3ef4979f8908?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" class="w-full h-32 object-cover" />
-                    <div class="p-2">
-                        <p class="text-xs font-medium">休闲周末装</p>
-                        <div class="flex items-center mt-1">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" class="w-5 h-5 rounded-full mr-1" />
-                            <span class="text-xs text-gray-500">杰克</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl overflow-hidden shadow-sm">
-                    <img src="https://images.unsplash.com/photo-1550614000-4895a10e1bfd?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" class="w-full h-32 object-cover" />
-                    <div class="p-2">
-                        <p class="text-xs font-medium">街拍达人</p>
-                        <div class="flex items-center mt-1">
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" class="w-5 h-5 rounded-full mr-1" />
-                            <span class="text-xs text-gray-500">莉莉</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl overflow-hidden shadow-sm">
-                    <img src="https://images.unsplash.com/photo-1551232864-3f0e6039ec08?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" class="w-full h-32 object-cover" />
-                    <div class="p-2">
-                        <p class="text-xs font-medium">约会穿搭</p>
-                        <div class="flex items-center mt-1">
-                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" class="w-5 h-5 rounded-full mr-1" />
-                            <span class="text-xs text-gray-500">汤姆</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<body>
+  <div class="home-container">
+    <div class="header">
+      <div class="app-title">AI 服装换装</div>
+      <div class="header-icons">
+        <i class="far fa-bell"></i>
+        <i class="far fa-bookmark"></i>
+      </div>
     </div>
     
-    <!-- 底部导航栏 -->
-    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around py-3">
-        <div class="flex flex-col items-center">
-            <i class="fas fa-home text-purple-700"></i>
-            <span class="text-xs mt-1 text-purple-700">首页</span>
-        </div>
-        <div class="flex flex-col items-center">
-            <i class="fas fa-tshirt text-gray-500"></i>
-            <span class="text-xs mt-1 text-gray-500">换装</span>
-        </div>
-        <div class="flex flex-col items-center">
-            <i class="fas fa-lightbulb text-gray-500"></i>
-            <span class="text-xs mt-1 text-gray-500">灵感</span>
-        </div>
-        <div class="flex flex-col items-center">
-            <i class="fas fa-users text-gray-500"></i>
-            <span class="text-xs mt-1 text-gray-500">社区</span>
-        </div>
-        <div class="flex flex-col items-center">
-            <i class="fas fa-user text-gray-500"></i>
-            <span class="text-xs mt-1 text-gray-500">我的</span>
-        </div>
+    <div class="search-bar">
+      <i class="fas fa-search"></i>
+      <input type="text" class="search-input" placeholder="搜索服装风格、场合穿搭...">
     </div>
+    
+    <div class="feature-cards">
+      <div class="feature-card">
+        <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="AI 换装">
+        <div class="feature-card-overlay">
+          <div class="feature-card-title">AI 换装</div>
+          <div class="feature-card-subtitle">一键换装体验</div>
+        </div>
+      </div>
+      
+      <div class="feature-card">
+        <img src="https://images.unsplash.com/photo-1560243563-062bfc001d68?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="风格推荐">
+        <div class="feature-card-overlay">
+          <div class="feature-card-title">风格推荐</div>
+          <div class="feature-card-subtitle">找到你的风格</div>
+        </div>
+      </div>
+      
+      <div class="feature-card">
+        <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="文字生成">
+        <div class="feature-card-overlay">
+          <div class="feature-card-title">文字生成</div>
+          <div class="feature-card-subtitle">描述即创造</div>
+        </div>
+      </div>
+      
+      <div class="feature-card">
+        <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="工作区">
+        <div class="feature-card-overlay">
+          <div class="feature-card-title">工作区</div>
+          <div class="feature-card-subtitle">管理你的设计</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-title">
+      <div>流行灵感</div>
+      <div class="section-title-more">查看全部</div>
+    </div>
+    
+    <div class="inspiration-grid">
+      <div class="inspiration-item">
+        <div class="inspiration-image">
+          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="街头风格">
+        </div>
+        <div class="inspiration-info">
+          <div class="inspiration-title">街头休闲风格</div>
+          <div class="inspiration-meta">
+            <div class="inspiration-user">
+              <div class="inspiration-user-avatar">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="用户头像">
+              </div>
+              <div>Lisa</div>
+            </div>
+            <div><i class="far fa-heart"></i> 328</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="inspiration-item">
+        <div class="inspiration-image">
+          <img src="https://images.unsplash.com/photo-1550614000-4895a10e1bfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="商务风格">
+        </div>
+        <div class="inspiration-info">
+          <div class="inspiration-title">现代商务风</div>
+          <div class="inspiration-meta">
+            <div class="inspiration-user">
+              <div class="inspiration-user-avatar">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="用户头像">
+              </div>
+              <div>Michael</div>
+            </div>
+            <div><i class="far fa-heart"></i> 215</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="inspiration-item">
+        <div class="inspiration-image">
+          <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="复古风格">
+        </div>
+        <div class="inspiration-info">
+          <div class="inspiration-title">复古文艺风</div>
+          <div class="inspiration-meta">
+            <div class="inspiration-user">
+              <div class="inspiration-user-avatar">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="用户头像">
+              </div>
+              <div>Emma</div>
+            </div>
+            <div><i class="far fa-heart"></i> 189</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="inspiration-item">
+        <div class="inspiration-image">
+          <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="简约风格">
+        </div>
+        <div class="inspiration-info">
+          <div class="inspiration-title">极简主义</div>
+          <div class="inspiration-meta">
+            <div class="inspiration-user">
+              <div class="inspiration-user-avatar">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="用户头像">
+              </div>
+              <div>Alex</div>
+            </div>
+            <div><i class="far fa-heart"></i> 276</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="bottom-nav">
+    <div class="nav-item active">
+      <div class="nav-icon"><i class="fas fa-home"></i></div>
+      <div>首页</div>
+    </div>
+    <div class="nav-item">
+      <div class="nav-icon"><i class="fas fa-compass"></i></div>
+      <div>发现</div>
+    </div>
+    <div class="nav-item">
+      <div class="create-button">
+        <i class="fas fa-plus"></i>
+      </div>
+      <div>创建</div>
+    </div>
+    <div class="nav-item">
+      <div class="nav-icon"><i class="fas fa-folder"></i></div>
+      <div>工作区</div>
+    </div>
+    <div class="nav-item">
+      <div class="nav-icon"><i class="fas fa-user"></i></div>
+      <div>我的</div>
+    </div>
+  </div>
 </body>
 </html>

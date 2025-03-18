@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 换装 - 上传图片</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f8fafc;
+      height: 100vh;
+    }
+    .upload-container {
+      padding: 20px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .back-button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .page-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .upload-steps {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      position: relative;
+    }
+    .step::after {
+      content: "";
+      position: absolute;
+      top: 12px;
+      right: -50%;
+      width: 100%;
+      height: 2px;
+      background-color: #e2e8f0;
+      z-index: 0;
+    }
+    .step:last-child::after {
+      display: none;
+    }
+    .step-number {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background-color: #e2e8f0;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+    .step.active .step-number {
+      background-color: #6366F1;
+      color: white;
+    }
+    .step-label {
+      font-size: 12px;
+      color: #64748b;
+    }
+    .step.active .step-label {
+      color: #6366F1;
+      font-weight: 600;
+    }
+    .upload-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+      border: 2px dashed #e2e8f0;
+    }
+    .upload-icon {
+      font-size: 48px;
+      color: #94a3b8;
+      margin-bottom: 16px;
+    }
+    .upload-text {
+      font-size: 16px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .upload-subtext {
+      font-size: 14px;
+      color: #64748b;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .upload-button {
+      background: linear-gradient(to right, #6366F1, #8B5CF6);
+      color: white;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .upload-tips {
+      margin-top: 24px;
+    }
+    .tip-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 12px;
+    }
+    .tips-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .tip-item {
+      background-color: white;
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .tip-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6366F1;
+    }
+    .tip-text {
+      font-size: 12px;
+      color: #64748b;
+      line-height: 1.4;
+    }
+    .continue-button {
+      background: linear-gradient(to right, #6366F1, #8B5CF6);
+      color: white;
+      font-weight: 600;
+      padding: 16px;
+      border-radius: 12px;
+      width: 100%;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="upload-container">
+    <div class="header">
+      <div class="back-button">
+        <i class="fas fa-arrow-left"></i>
+      </div>
+      <div class="page-title">AI 换装</div>
+    </div>
+    
+    <div class="upload-steps">
+      <div class="step active">
+        <div class="step-number">1</div>
+        <div class="step-label">上传图片</div>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-label">选择风格</div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-label">生成结果</div>
+      </div>
+    </div>
+    
+    <div class="upload-area">
+      <div class="upload-icon">
+        <i class="fas fa-cloud-upload-alt"></i>
+      </div>
+      <div class="upload-text">上传一张你的照片</div>
+      <div class="upload-subtext">支持 JPG、PNG 格式，文件大小不超过 10MB</div>
+      <button class="upload-button">
+        <i class="fas fa-image"></i>
+        选择图片
+      </button>
+    </div>
+    
+    <div class="upload-tips">
+      <div class="tip-title">上传提示</div>
+      <div class="tips-list">
+        <div class="tip-item">
+          <div class="tip-icon">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="tip-text">确保照片中只有一个人，且人物清晰可见</div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <div class="tip-text">光线充足的环境下拍摄效果更佳</div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-icon">
+            <i class="fas fa-expand"></i>
+          </div>
+          <div class="tip-text">全身照片可以获得更好的换装效果</div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div class="tip-text">所有照片都将加密处理，保障隐私安全</div>
+        </div>
+      </div>
+    </div>
+    
+    <button class="continue-button" disabled>
+      继续
+    </button>
+  </div>
+</body>
+</html>

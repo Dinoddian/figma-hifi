@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>风格推荐</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f8fafc;
+      height: 100vh;
+    }
+    .style-container {
+      padding: 20px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .back-button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .page-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .style-quiz {
+      background-color: white;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .quiz-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 8px;
+    }
+    .quiz-description {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 16px;
+    }
+    .quiz-button {
+      background: linear-gradient(to right, #6366F1, #8B5CF6);
+      color: white;
+      font-weight: 600;
+      padding: 12px;
+      border-radius: 12px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .style-categories {
+      margin-bottom: 24px;
+    }
+    .categories-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .categories-title-more {
+      font-size: 14px;
+      font-weight: 500;
+      color: #6366F1;
+    }
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .category-item {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 3/2;
+    }
+    .category-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .category-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+      color: white;
+    }
+    .category-name {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .category-count {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+    .recommended-styles {
+      flex: 1;
+      overflow-y: auto;
+    }
+    .styles-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 16px;
+    }
+    .style-filters {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+      scrollbar-width: none;
+    }
+    .style-filters::-webkit-scrollbar {
+      display: none;
+    }
+    .filter-item {
+      flex: 0 0 auto;
+      padding: 8px 16px;
+      border-radius: 20px;
+      background-color: #f1f5f9;
+      color: #64748b;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .filter-item.active {
+      background: linear-gradient(to right, #6366F1, #8B5CF6);
+      color: white;
+    }
+    .styles-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .style-item {
+      border-radius: 16px;
+      overflow: hidden;
+      background-color: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .style-image {
+      width: 100%;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+    }
+    .style-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .style-info {
+      padding: 12px;
+    }
+    .style-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 4px;
+    }
+    .style-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #64748b;
+    }
+    .style-match {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .match-percentage {
+      color: #10b981;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="style-container">
+    <div class="header">
+      <div class="back-button">
+        <i class="fas fa-arrow-left"></i>
+      </div>
+      <div class="page-title">风格推荐</div>
+    </div>
+    
+    <div class="style-quiz">
+      <div class="quiz-title">找到你的专属风格</div>
+      <div class="quiz-description">完成简短的风格测试，我们将为你推荐最适合的穿搭风格</div>
+      <button class="quiz-button">
+        <i class="fas fa-clipboard-list"></i>
+        开始风格测试
+      </button>
+    </div>
+    
+    <div class="style-categories">
+      <div class="categories-title">
+        <div>热门风格</div>
+        <div class="categories-title-more">查看全部</div>
+      </div>
+      <div class="categories-grid">
+        <div class="category-item">
+          <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="商务风格" class="category-image">
+          <div class="category-overlay">
+            <div class="category-name">商务风格</div>
+            <div class="category-count">124 套搭配</div>
+          </div>
+        </div>
+        
+        <div class="category-item">
+          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="休闲风格" class="category-image">
+          <div class="category-overlay">
+            <div class="category-name">休闲风格</div>
+            <div class="category-count">186 套搭配</div>
+          </div>
+        </div>
+        
+        <div class="category-item">
+          <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="复古风格" class="category-image">
+          <div class="category-overlay">
+            <div class="category-name">复古风格</div>
+            <div class="category-count">95 套搭配</div>
+          </div>
+        </div>
+        
+        <div class="category-item">
+          <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="时尚风格" class="category-image">
+          <div class="category-overlay">
+            <div class="category-name">时尚风格</div>
+            <div class="category-count">142 套搭配</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="recommended-styles">
+      <div class="styles-title">为你推荐</div>
+      
+      <div class="style-filters">
+        <div class="filter-item active">全部</div>
+        <div class="filter-item">春季</div>
+        <div class="filter-item">夏季</div>
+        <div class="filter-item">秋季</div>
+        <div class="filter-item">冬季</div>
+        <div class="filter-item">工作场合</div>
+        <div class="filter-item">休闲场合</div>
+      </div>
+      
+      <div class="styles-grid">
+        <div class="style-item">
+          <div class="style-image">
+            <img src="https://images.unsplash.com/photo-1550614000-4895a10e1bfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="商务风格">
+          </div>
+          <div class="style-info">
+            <div class="style-name">现代商务风</div>
+            <div class="style-meta">
+              <div class="style-match">
+                <i class="fas fa-check-circle"></i>
+                <div class="match-percentage">92% 匹配</div>
+              </div>
+              <div><i class="far fa-heart"></i> 245</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="style-item">
+          <div class="style-image">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="休闲风格">
+          </div>
+          <div class="style-info">
+            <div class="style-name">街头休闲风</div>
+            <div class="style-meta">
+              <div class="style-match">
+                <i class="fas fa-check-circle"></i>
+                <div class="match-percentage">87% 匹配</div>
+              </div>
+              <div><i class="far fa-heart"></i> 328</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="style-item">
+          <div class="style-image">
+            <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="简约风格">
+          </div>
+          <div class="style-info">
+            <div class="style-name">极简主义</div>
+            <div class="style-meta">
+              <div class="style-match">
+                <i class="fas fa-check-circle"></i>
+                <div class="match-percentage">85% 匹配</div>
+              </div>
+              <div><i class="far fa-heart"></i> 276</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="style-item">
+          <div class="style-image">
+            <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="复古风格">
+          </div>
+          <div class="style-info">
+            <div class="style-name">复古文艺风</div>
+            <div class="style-meta">
+              <div class="style-match">
+                <i class="fas fa-check-circle"></i>
+                <div class="match-percentage">78% 匹配</div>
+              </div>
+              <div><i class="far fa-heart"></i> 189</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文字生成服装</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f8fafc;
+      height: 100vh;
+    }
+    .text-to-image-container {
+      padding: 20px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .back-button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .page-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .prompt-container {
+      background-color: white;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .prompt-label {
+      font-size: 16px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 12px;
+    }
+    .prompt-textarea {
+      width: 100%;
+      min-height: 120px;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 16px;
+      resize: none;
+      margin-bottom: 16px;
+    }
+    .prompt-textarea:focus {
+      outline: none;
+      border-color: #6366F1;
+      box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+    }
+    .prompt-examples {
+      margin-bottom: 16px;
+    }
+    .examples-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #64748b;
+      margin-bottom: 8px;
+    }
+    .examples-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .example-tag {
+      padding: 6px 12px;
+      background-color: #f1f5f9;
+      border-radius: 20px;
+      font-size: 12px;
+      color: #64748b;
+    }
+    .generate-button {
+      background: linear-gradient(to right, #6366F1, #8B5CF6);
+      color: white;
+      font-weight: 600;
+      padding: 12px;
+      border-radius: 12px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .options-container {
+      margin-bottom: 24px;
+    }
+    .options-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 16px;
+    }
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .option-item {
+      background-color: white;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .option-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 8px;
+    }
+    .option-selector {
+      display: flex;
+      gap: 8px;
+    }
+    .option-choice {
+      flex: 1;
+      padding: 8px;
+      text-align: center;
+      border-radius: 8px;
+      font-size: 12px;
+      border: 1px solid #e2e8f0;
+      color: #64748b;
+    }
+    .option-choice.active {
+      background-color: #6366F1;
+      color: white;
+      border-color: #6366F1;
+    }
+    .results-container {
+      flex: 1;
+      overflow-y: auto;
+    }
+    .results-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .result-item {
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .result-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .loading-indicator {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 3px solid #e2e8f0;
+      border-top-color: #6366F1;
+      animation: spin 1s linear infinite;
+      margin-bottom: 12px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .loading-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: #334155;
+    }
+  </style>
+</head>
+<body>
+  <div class="text-to-image-container">
+    <div class="header">
+      <div class="back-button">
+        <i class="fas fa-arrow-left"></i>
+      </div>
+      <div class="page-title">文字生成服装</div>
+    </div>
+    
+    <div class="prompt-container">
+      <div class="prompt-label">描述你想要的服装</div>
+      <textarea class="prompt-textarea" placeholder="例如：一件蓝色条纹衬衫，搭配米色休闲裤和棕色皮鞋，适合春季商务场合..."></textarea>
+      
+      <div class="prompt-examples">
+        <div class="examples-title">示例提示词</div>
+        <div class="examples-list">
+          <div class="example-tag">复古连衣裙</div>
+          <div class="example-tag">商务西装套装</div>
+          <div class="example-tag">街头潮流风格</div>
+          <div class="example-tag">日系学院风</div>
+          <div class="example-tag">度假沙滩装</div>
+        </div>
+      </div>
+      
+      <button class="generate-button">
+        <i class="fas fa-magic"></i>
+        生成设计
+      </button>
+    </div>
+    
+    <div class="options-container">
+      <div class="options-title">高级选项</div>
+      <div class="options-grid">
+        <div class="option-item">
+          <div class="option-label">风格</div>
+          <div class="option-selector">
+            <div class="option-choice active">写实</div>
+            <div class="option-choice">卡通</div>
+            <div class="option-choice">艺术</div>
+          </div>
+        </div>
+        
+        <div class="option-item">
+          <div class="option-label">季节</div>
+          <div class="option-selector">
+            <div class="option-choice">春</div>
+            <div class="option-choice active">夏</div>
+            <div class="option-choice">秋</div>
+            <div class="option-choice">冬</div>
+          </div>
+        </div>
+        
+        <div class="option-item">
+          <div class="option-label">场合</div>
+          <div class="option-selector">
+            <div class="option-choice">休闲</div>
+            <div class="option-choice active">商务</div>
+            <div class="option-choice">派对</div>
+          </div>
+        </div>
+        
+        <div class="option-item">
+          <div class="option-label">生成数量</div>
+          <div class="option-selector">
+            <div class="option-choice">2张</div>
+            <div class="option-choice active">4张</div>
+            <div class="option-choice">6张</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="results-container">
+      <div class="results-title">
+        <div>生成结果</div>
+        <div style="font-size: 14px; color: #6366F1; font-weight: 500;">查看全部</div>
+      </div>
+      
+      <div class="results-grid">
+        <div class="result-item">
+          <img src="https://images.unsplash.com/photo-1550614000-4895a10e1bfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="生成结果" class="result-image">
+        </div>
+        
+        <div class="result-item">
+          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="生成结果" class="result-image">
+        </div>
+        
+        <div class="result-item">
+          <div class="loading-indicator">
+            <div class="spinner"></div>
+            <div class="loading-text">生成中...</div>
+          </div>
+          <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="生成结果" class="result-image">
+        </div>
+        
+        <div class="result-item">
+          <div class="loading-indicator">
+            <div class="spinner"></div>
+            <div class="loading-text">生成中...</div>
+          </div>
+          <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="生成结果" class="result-image">
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
